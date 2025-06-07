@@ -32,6 +32,14 @@ KoraLibC is a minimal, freestanding C standard library implementation designed f
 - **Process control**: `exit()`, `abort()`, `atexit()` (stubs for now)
 - **Environment**: `getenv()`, `putenv()`, `setenv()`, `unsetenv()` (stubs for now)
 
+#### Standard Definitions (`stddef.h`)
+**C Standard Compliant Header**
+- Basic types: `size_t`, `ptrdiff_t`, `wchar_t`
+- Constants: `NULL`  
+- Macros: `offsetof(type, member)`
+
+This header is required by the C standard (C99 Section 7.17) and is available even in freestanding implementations.
+
 #### Type Definitions (`kora/sys/types.h`)
 **Target Architecture: ARM64 (AARCH64) - Raspberry Pi 3/4/5**
 - Basic integer types: `int8_t` (1 byte), `uint8_t` (1 byte), `int16_t` (2 bytes), `uint16_t` (2 bytes)
@@ -91,9 +99,10 @@ All tests passed! KoraLibC is working correctly.
 Include the appropriate headers and link with the library:
 
 ```c
-#include <kora/string.h>
-#include <kora/ctype.h>
-#include <kora/stdlib.h>
+#include <stddef.h>        /* Standard definitions */
+#include <kora/string.h>   /* String functions */
+#include <kora/ctype.h>    /* Character classification */
+#include <kora/stdlib.h>   /* Standard library */
 
 int main() {
     char buffer[100];
@@ -103,6 +112,7 @@ int main() {
         printf("First character is alphabetic\n");
     }
     
+    size_t len = strlen(buffer);  /* Use size_t from stddef.h */
     int num = atoi("42");
     return 0;
 }
@@ -182,20 +192,22 @@ void free(void *ptr);
 
 ```
 koralibc/
-├── include/kora/          # Public headers
-│   ├── sys/types.h       # Type definitions
-│   ├── string.h          # String functions
-│   ├── ctype.h           # Character classification
-│   └── stdlib.h          # Standard library functions
-├── src/                  # Implementation files
-│   ├── string.c          # String function implementations
-│   ├── ctype.c           # Character function implementations
-│   └── stdlib.c          # Standard library implementations
-├── tests/                # Unit tests (CMocka)
-├── build/                # Build directory
-├── CMakeLists.txt        # Build configuration
-├── test_simple.c         # Simple test program
-└── README.md             # This file
+├── include/              # Public headers
+│   ├── stddef.h         # Standard definitions (C standard)
+│   └── kora/            # KoraOS-specific headers
+│       ├── sys/types.h  # Type definitions
+│       ├── string.h     # String functions
+│       ├── ctype.h      # Character classification
+│       └── stdlib.h     # Standard library functions
+├── src/                 # Implementation files
+│   ├── string.c         # String function implementations
+│   ├── ctype.c          # Character function implementations
+│   └── stdlib.c         # Standard library implementations
+├── tests/               # Unit tests (CMocka)
+├── build/               # Build directory
+├── CMakeLists.txt       # Build configuration
+├── test_simple.c        # Simple test program
+└── README.md            # This file
 ```
 
 ## License
