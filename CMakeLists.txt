@@ -16,6 +16,7 @@ set(KORALIBC_SOURCES
     src/string.c
     src/ctype.c
     src/stdlib.c
+    src/stdio.c
 )
 
 # Create static library
