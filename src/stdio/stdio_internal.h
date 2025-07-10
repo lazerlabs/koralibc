@@ -41,6 +41,8 @@ struct kora_file {
     size_t buffer_pos;  /* Position in buffer */
     size_t buffer_end;  /* End of valid data in buffer */
     int buffer_mode;    /* Buffering mode */
+    int ungot_char;     /* Character pushed back with ungetc */
+    int has_unget;      /* Flag indicating ungot_char is valid */
 };
 
 /* Internal functions */

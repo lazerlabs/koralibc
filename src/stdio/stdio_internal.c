@@ -21,6 +21,16 @@ void init_stdio(void) {
   // Initialize file table
   for (int i = 0; i < FOPEN_MAX; i++) {
     file_table[i].fd = -1;
+    file_table[i].eof_flag = 0;
+    file_table[i].error_flag = 0;
+    file_table[i].position = 0;
+    file_table[i].buffer = NULL;
+    file_table[i].buffer_size = 0;
+    file_table[i].buffer_pos = 0;
+    file_table[i].buffer_end = 0;
+    file_table[i].buffer_mode = 0;
+    file_table[i].ungot_char = 0;
+    file_table[i].has_unget = 0;
   }
 
   // Set up standard streams
@@ -31,6 +41,12 @@ void init_stdio(void) {
   stdin->error_flag = 0;
   stdin->position = 0;
   stdin->buffer = NULL;
+  stdin->buffer_size = 0;
+  stdin->buffer_pos = 0;
+  stdin->buffer_end = 0;
+  stdin->buffer_mode = 0;
+  stdin->ungot_char = 0;
+  stdin->has_unget = 0;
 
   stdout = &file_table[1];
   stdout->fd = STDOUT_FILENO;
@@ -39,6 +55,12 @@ void init_stdio(void) {
   stdout->error_flag = 0;
   stdout->position = 0;
   stdout->buffer = NULL;
+  stdout->buffer_size = 0;
+  stdout->buffer_pos = 0;
+  stdout->buffer_end = 0;
+  stdout->buffer_mode = 0;
+  stdout->ungot_char = 0;
+  stdout->has_unget = 0;
 
   stderr = &file_table[2];
   stderr->fd = STDERR_FILENO;
@@ -47,6 +69,12 @@ void init_stdio(void) {
   stderr->error_flag = 0;
   stderr->position = 0;
   stderr->buffer = NULL;
+  stderr->buffer_size = 0;
+  stderr->buffer_pos = 0;
+  stderr->buffer_end = 0;
+  stderr->buffer_mode = 0;
+  stderr->ungot_char = 0;
+  stderr->has_unget = 0;
 
   file_table_init = 1;
 }

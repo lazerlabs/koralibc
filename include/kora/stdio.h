@@ -34,6 +34,9 @@ int putchar(int c);
 int getchar(void);
 int putc(int c, FILE *stream);
 int getc(FILE *stream);
+int fputc(int c, FILE *stream);
+int fgetc(FILE *stream);
+int ungetc(int c, FILE *stream);
 
 /* String I/O */
 int puts(const char *s);
@@ -58,6 +61,7 @@ int sscanf(const char *str, const char *format, ...);
 
 /* File operations */
 FILE *fopen(const char *filename, const char *mode);
+FILE *freopen(const char *filename, const char *mode, FILE *stream);
 int fclose(FILE *stream);
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -66,6 +70,8 @@ long ftell(FILE *stream);
 void rewind(FILE *stream);
 int fgetpos(FILE *stream, fpos_t *pos);
 int fsetpos(FILE *stream, const fpos_t *pos);
+void setbuf(FILE *stream, char *buf);
+int setvbuf(FILE *stream, char *buf, int mode, size_t size);
 
 /* File status */
 int feof(FILE *stream);

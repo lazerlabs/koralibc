@@ -16,15 +16,24 @@
 #include "stdio/getchar.c"
 #include "stdio/putc.c"
 #include "stdio/putchar.c"
+#include "stdio/fgetc.c"
+#include "stdio/fputc.c"
+#include "stdio/ungetc.c"
 
 /* String I/O */
 #include "stdio/fgets.c"
 #include "stdio/fputs.c"
 #include "stdio/gets.c"
 #include "stdio/puts.c"
+#include "stdio/setbuf.c"
+#include "stdio/setvbuf.c"
 
 /* Formatted output */
 #include "stdio/fprintf.c"
+#include "stdio/sprintf.c"
+#include "stdio/snprintf.c"
+#include "stdio/vsprintf.c"
+#include "stdio/vsnprintf.c"
 #include "stdio/printf.c"
 #include "stdio/vfprintf.c"
 #include "stdio/vprintf.c"
@@ -32,38 +41,14 @@
 /* File operations */
 #include "stdio/fclose.c"
 #include "stdio/fopen.c"
+#include "stdio/freopen.c"
 #include "stdio/fread.c"
 #include "stdio/fwrite.c"
-
-/* Stub implementations for unimplemented functions */
-
-int sprintf(char *str, const char *format, ...) {
-  (void)str;
-  (void)format;
-  return -1; /* TODO: Implement */
-}
-
-int snprintf(char *str, size_t size, const char *format, ...) {
-  (void)str;
-  (void)size;
-  (void)format;
-  return -1; /* TODO: Implement */
-}
-
-int vsprintf(char *str, const char *format, va_list ap) {
-  (void)str;
-  (void)format;
-  (void)ap;
-  return -1; /* TODO: Implement */
-}
-
-int vsnprintf(char *str, size_t size, const char *format, va_list ap) {
-  (void)str;
-  (void)size;
-  (void)format;
-  (void)ap;
-  return -1; /* TODO: Implement */
-}
+#include "stdio/fscanf.c"
+#include "stdio/scanf.c"
+#include "stdio/sscanf.c"
+#include "stdio/vfscanf.c"
+#include "stdio/vsscanf.c"
 
 /* File operations stubs */
 
@@ -143,22 +128,6 @@ int fsetpos(FILE *stream, const fpos_t *pos) {
   if (!stream || !pos)
     return -1;
   return fseek(stream, *pos, SEEK_SET);
-}
-
-/* Formatted input stubs */
-int scanf(const char *format, ...) {
-  (void)format;
-  return EOF;
-}
-int fscanf(FILE *stream, const char *format, ...) {
-  (void)stream;
-  (void)format;
-  return EOF;
-}
-int sscanf(const char *str, const char *format, ...) {
-  (void)str;
-  (void)format;
-  return EOF;
 }
 
 /* Temporary file stubs */
