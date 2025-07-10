@@ -9,6 +9,11 @@ int getc(FILE *stream) {
     return EOF;
   }
 
+  if (stream->has_unget) {
+    stream->has_unget = 0;
+    return stream->ungot_char;
+  }
+
   char c;
   int result = sys_read(stream->fd, &c, 1);
 

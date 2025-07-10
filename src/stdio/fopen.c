@@ -52,6 +52,8 @@ FILE *fopen(const char *filename, const char *mode) {
   file->buffer_pos = 0;
   file->buffer_end = 0;
   file->buffer_mode = 0;
+  file->ungot_char = 0;
+  file->has_unget = 0;
 
   return file;
 }

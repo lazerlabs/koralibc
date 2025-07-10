@@ -20,6 +20,13 @@ int fclose(FILE *stream) {
   stream->eof_flag = 0;
   stream->error_flag = 0;
   stream->position = 0;
+  stream->buffer = NULL;
+  stream->buffer_size = 0;
+  stream->buffer_pos = 0;
+  stream->buffer_end = 0;
+  stream->buffer_mode = 0;
+  stream->ungot_char = 0;
+  stream->has_unget = 0;
 
   return (result == 0) ? 0 : EOF;
 }
