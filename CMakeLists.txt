@@ -12,11 +12,15 @@ set(KORALIBC_C_FLAGS -nostdlib -ffreestanding -fno-builtin -Wall -Wextra -Werror
 include_directories(include)
 
 # Source files (will be populated as we add more modules)
+file(GLOB STDIO_SOURCES src/stdio/*.c)
+
 set(KORALIBC_SOURCES
     src/string.c
     src/ctype.c
     src/stdlib.c
-    src/stdio.c
+    src/assert.c
+    src/errno.c
+    ${STDIO_SOURCES}
 )
 
 # Create static library
